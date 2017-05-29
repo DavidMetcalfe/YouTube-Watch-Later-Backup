@@ -1,0 +1,5 @@
+beautifulsoup4
+requests
+pycryptodome
+keyring
+pypiwin32
