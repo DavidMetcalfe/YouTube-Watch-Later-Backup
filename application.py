@@ -31,7 +31,7 @@ if args.c:
     cj = browsercookie.chrome()
 elif args.f:
     cj = browsercookie.firefox()
-else:
+elif args.a:
     cj = browsercookie.load()
 r = requests.get(url, cookies=cj)
 
