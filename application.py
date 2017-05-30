@@ -1,9 +1,21 @@
 import time
 import base64
+import argparse
 
 import requests
 from bs4 import BeautifulSoup
 import browsercookie
+
+parser = argparse.ArgumentParser(
+    description="Select browser to fetch cookies from.")
+group = parser.add_mutually_exclusive_group(required=True)
+group.add_argument('-c', action='store_true',
+                   help="Pull cookies from Chrome.")
+group.add_argument('-f', action='store_true',
+                   help="Pull cookies from Firefox.")
+group.add_argument('-a', action='store_true',
+                   help="Pull cookies from all browsers.")
+args = parser.parse_args()
 
 
 def fetch_img(url):
@@ -14,7 +26,13 @@ def fetch_img(url):
 
 # Requests / browsercookie setup
 url = 'https://www.youtube.com/playlist?list=WL'
-cj = browsercookie.chrome()
+# Set cookiejar from argument vector.
+if args.c:
+    cj = browsercookie.chrome()
+elif args.f:
+    cj = browsercookie.firefox()
+else:
+    cj = browsercookie.load()
 r = requests.get(url, cookies=cj)
 
 # BeautifulSoup setup
