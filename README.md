@@ -11,9 +11,11 @@ This script is meant to address the poor design decisions by YouTube, where a de
 
 ## Usage
 
-**Note:** Currently the script is configured to use Chrome's cookies under `browsercookie.chrome()`
-
-1. Run `python application.py`. 
+1. Open a command line / terminal window in the project directory.
+2. Decide on which browser you wish to use to cookies from, and add it as a command-line argument.
+    - For Chome: Run `python application.py -c`.
+    - For Firefox: Run `python application.py -f`.
+    - For All browsers: Run `python application.py -a`.  
 2. The script will output the backup of the Watch Later playlist.
 
 ## Contributing
