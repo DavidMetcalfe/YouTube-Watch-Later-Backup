@@ -12,7 +12,7 @@ This script is meant to address the poor design decisions by YouTube, where a de
 ## Usage
 
 1. Open a command line / terminal window in the project directory.
-2. Decide on which browser you wish to use to cookies from, and add it as a command-line argument.
+2. Decide on which browser you wish to use to cookies from, and add it as a command-line argument. If no options are chosen, the script will default to using Chrome's cookies.
     - For Chome: Run `python application.py -c`.
     - For Firefox: Run `python application.py -f`.
     - For All browsers: Run `python application.py -a`.  
