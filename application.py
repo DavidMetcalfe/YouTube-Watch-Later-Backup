@@ -8,7 +8,7 @@ import browsercookie
 
 parser = argparse.ArgumentParser(
     description="Select browser to fetch cookies from.")
-group = parser.add_mutually_exclusive_group(required=True)
+group = parser.add_mutually_exclusive_group()
 group.add_argument('-c', action='store_true',
                    help="Pull cookies from Chrome.")
 group.add_argument('-f', action='store_true',
@@ -19,6 +19,10 @@ args = parser.parse_args()
 
 
 def fetch_img(url):
+    ''' Fetch YouTube image data '''
+    # Deals with URLs that do not start with http/https.
+    if url.startswith("//"):
+        url = "http:" + url
     response = requests.get(url, stream=True)
     response.raw.decode_content = True
     return base64.b64encode(response.raw.read())
@@ -33,6 +37,8 @@ elif args.f:
     cj = browsercookie.firefox()
 elif args.a:
     cj = browsercookie.load()
+else:
+    cj = browsercookie.chrome()
 r = requests.get(url, cookies=cj)
 
 # BeautifulSoup setup
