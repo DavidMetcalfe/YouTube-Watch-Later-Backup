@@ -50,7 +50,7 @@ links = soup.find_all('tr', {'class': 'pl-video'})
 with open('YT-WatchLater-Export {}.txt'.format(time.strftime("%Y-%m-%d-%H%M%S")), 'w', encoding='utf-8') as f:
     for link in links:
         # If deleted video, don't attempt to fetch image data (doesn't exist).
-        if link.attrs['data-title'] == '[Deleted video]':
+        if link.attrs['data-title'] in ['[Deleted video]', '[Private video]']:
             f.write("{}\n".format(link.attrs['data-title']))
             f.write(
                 "https://youtube.com{}\n".format(link.find('a').attrs['href'].split('&index=1&list=WL', 1)[0]))
